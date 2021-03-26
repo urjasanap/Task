@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task</title>
+</head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<body>
+    <button (click)="getdata()" class="btn btn-success">Get Data</button>
+
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Gender</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Picture</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor = "let user of rec | paginate: {itemsPerPage: 10,
+            currentPage: page, totalItems: totalrecs }">
+            
+            <td>{{user.gender}}</td>
+            <td>{{user.name.first}}</td>
+            <td>{{user.email}}</td>
+            <td>
+                <img src="{{user.picture.medium}}" alt="">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div>
+          <pagination-controls maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+      </div>
+</body>
+</html>
